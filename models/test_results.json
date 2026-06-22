@@ -1,0 +1,61 @@
+{
+  "chosen_model": "RandomForest",
+  "seed": 42,
+  "macro_f1": 0.8894266277422508,
+  "binary_smishing_vs_not_macro_f1": 0.9258566978193147,
+  "per_class_report": {
+    "ham": {
+      "precision": 0.986734693877551,
+      "recall": 1.0,
+      "f1-score": 0.9933230611196713,
+      "support": 967.0
+    },
+    "spam": {
+      "precision": 0.8125,
+      "recall": 0.8041237113402062,
+      "f1-score": 0.8082901554404145,
+      "support": 97.0
+    },
+    "smishing": {
+      "precision": 0.9122807017543859,
+      "recall": 0.8253968253968254,
+      "f1-score": 0.8666666666666667,
+      "support": 126.0
+    },
+    "accuracy": 0.965546218487395,
+    "macro avg": {
+      "precision": 0.9038384652106456,
+      "recall": 0.8765068455790105,
+      "f1-score": 0.8894266277422508,
+      "support": 1190.0
+    },
+    "weighted avg": {
+      "precision": 0.9646490062190289,
+      "recall": 0.965546218487395,
+      "f1-score": 0.9648298698995315,
+      "support": 1190.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      967,
+      0,
+      0
+    ],
+    [
+      9,
+      78,
+      10
+    ],
+    [
+      4,
+      18,
+      104
+    ]
+  ],
+  "class_order": [
+    "ham",
+    "spam",
+    "smishing"
+  ]
+}
