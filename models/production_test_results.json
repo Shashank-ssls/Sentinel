@@ -1,0 +1,61 @@
+{
+  "production_model": "LogisticRegression",
+  "seed": 42,
+  "macro_f1": 0.8906942613251349,
+  "binary_smishing_vs_not_macro_f1": 0.9334273182957393,
+  "per_class_report": {
+    "ham": {
+      "precision": 0.9877300613496932,
+      "recall": 0.9989658738366081,
+      "f1-score": 0.9933161953727506,
+      "support": 967.0
+    },
+    "spam": {
+      "precision": 0.8488372093023255,
+      "recall": 0.7525773195876289,
+      "f1-score": 0.7978142076502732,
+      "support": 97.0
+    },
+    "smishing": {
+      "precision": 0.8809523809523809,
+      "recall": 0.8809523809523809,
+      "f1-score": 0.8809523809523809,
+      "support": 126.0
+    },
+    "accuracy": 0.9663865546218487,
+    "macro avg": {
+      "precision": 0.9058398838681332,
+      "recall": 0.8774985247922059,
+      "f1-score": 0.8906942613251349,
+      "support": 1190.0
+    },
+    "weighted avg": {
+      "precision": 0.9651026711155284,
+      "recall": 0.9663865546218487,
+      "f1-score": 0.9654829740063247,
+      "support": 1190.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      966,
+      1,
+      0
+    ],
+    [
+      9,
+      73,
+      15
+    ],
+    [
+      3,
+      12,
+      111
+    ]
+  ],
+  "class_order": [
+    "ham",
+    "spam",
+    "smishing"
+  ]
+}
