@@ -11,7 +11,7 @@ animated threat graph with a plain-language explanation.
 > scams (UPI, bank-impersonation, fake-KYC)?
 
 ## Status
-**Phase 0 complete** — scaffold & reproducibility foundation in place. See
+**Phase 1 complete** — smishing data pipeline in place (3-class SMS split). See
 `EXECUTION_PLAN.md` for the phased plan and `Sentinel_Project_Brief.md` for full
 context. Build proceeds one phase at a time.
 
@@ -47,6 +47,59 @@ paper/        outline.md + figures/  (IEEE write-up)
   src.config` prints resolved config, tests pass. *Paper contribution:* none yet
   — establishes the reproducibility foundation (fixed seed, env-driven config,
   pinned deps, IEEE paper skeleton).
+- **Phase 1 — Data pipeline (smishing-first).** *Demoable:* `python -m src.data`
+  loads the Mendeley SMS corpus (`data/raw/Dataset_5971.csv`), normalizes labels
+  to 3 lowercase classes (ham/spam/smishing) and yes/No flags to booleans,
+  emits the addendum schema, applies **text-level deduplication** (raw 5,971 →
+  5,949 unique messages; dedup on `text`, first kept, before the split so no
+  text spans train/test), then writes a fixed **stratified** train/test split
+  (4759/1190, seed 42) to `data/processed/`; re-running reproduces a
+  byte-identical split. Prints class balance, flag rates, stratification check,
+  and message_id + text leakage guards. `load_processed()` serves Phase 2.
+  *Paper contribution:* Methodology §data — reproducible, de-duplicated 3-class
+  SMS dataset, class balance (~81% ham → macro-F1 headline), and the schema that
+  makes the India evaluation subset (Phase 5) a simple `india_relevant` filter.
+- **Phase 2 — Features + model comparison (Stage 1).** *Demoable:* `python -m
+  src.train` builds the shared TF-IDF (1–2 gram) + structural feature pipeline
+  (`src/features.py`, one code path for train and inference), compares 4
+  classical models via stratified 5-fold CV on train only (no leakage — TF-IDF
+  fit inside each fold), then evaluates the winner **once** on the held-out
+  test set. `python predict.py "<msg>"` returns class + probabilities. Best
+  model: **RandomForest**, CV macro-F1 **0.884 ± 0.015**, held-out test
+  macro-F1 **0.889** (binary smishing-vs-not 0.926). Artifacts saved under
+  `models/` (`cv_comparison.csv`, `test_results.json`, `confusion_matrix.csv`,
+  `best_model.pkl`). *Paper contribution:* the first results table — model
+  comparison + held-out per-class/confusion metrics, a minimal viable paper
+  result. (Note: on out-of-distribution India-style messages the model is
+  uncertain — motivates the Phase 5 India evaluation.)
+- **Phase 3 — Interpretability (Stage 1).** *Demoable:* `python -m src.explain`
+  retrains **LogisticRegression as the production model** (chosen over RF: within
+  CV variance, test macro-F1 **0.891**, but signed coefficients give honest
+  explanations; RF artifacts kept), then writes global + local interpretability
+  artifacts. *Global:* top positive/negative TF-IDF terms per class and signed
+  structural-feature weights (CSV + bar charts in `paper/figures/`), plus a
+  permutation-importance cross-check. *Local:* `explain(message)` returns the
+  predicted class, probabilities, and top signed feature contributions (the
+  demo's future "why" panel). Top smishing terms (claim/won/prize/http) and
+  structural signals (has_phone, digit_count, has_url) match security intuition;
+  permutation importance agrees (digit_count, has_phone, has_url top).
+  *Paper contribution:* the Interpretability Analysis section — what drives
+  detection, with model-faithful global and per-message explanations.
+- **Phase 4 — Stage 2: URL feature ablation (optional).** *Demoable:* `python -m
+  src.ablation` extends `src/features.py` with 10 lexical URL features
+  (length, dots, digits, `@`, IP-host, suspicious TLD, subdomain depth,
+  shortener, https, brand-distance via Levenshtein to `protected_brands.txt`),
+  computed only for URL-bearing messages (neutral zeros otherwise), no network
+  calls. Same LogReg/seed/split/5-fold CV. **Ablation result:** Stage-1 test
+  macro-F1 **0.8907** vs Stage-1+URL **0.8894** (Δ −0.0013; CV Δ −0.0023) — URL
+  features **do not help overall**, as expected since URLs appear in only ~3.8%
+  of messages. `explain()` now surfaces `url__*` contributions on URL-bearing
+  messages. Ablation table saved to `paper/figures/url_ablation.csv`; augmented
+  model saved separately (`models/url_augmented_model.pkl`) — **Stage-1 remains
+  the production model**; all prior artifacts untouched. *Paper contribution:*
+  the feature-set ablation (Stage-1 vs Stage-1+URL) — an honest negative result
+  showing message-level features already capture the signal. Network host
+  features (WHOIS/cert/ASN) remain future work.
 
 ## Scope
 Classical ML only (scikit-learn, XGBoost). Neural-network approaches are

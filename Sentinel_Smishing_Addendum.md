@@ -20,12 +20,17 @@
      message contains a URL, run the lexical URL features from the original brief
      on it. If time runs short, Stage 2 degrades gracefully to "future work."
 
-3. **India angle: both sources.**
+3. **India angle: train on general smishing, evaluate on India.**
    - **Training:** Mendeley SMS Phishing Dataset (Mishra & Soni, 2022,
-     DOI 10.17632/f45bkkt8pr.1) — `Dataset_5971.zip`: 5,971 messages
+     DOI 10.17632/f45bkkt8pr.1) — `data/raw/Dataset_5971.csv`: a general /
+     largely Western-origin smishing corpus of ~5,971 messages
      (4,844 ham / 489 spam / 638 smishing), columns LABEL/TEXT/URL/EMAIL/PHONE.
+     (Inspection of the raw data confirms it is largely Western/UK-origin —
+     BankOfAmerica, Orange, £ amounts — NOT India-origin.)
    - **Evaluation:** my own curated India SMS set (inbox + chakshu/cybercrime
-     reports), tagged India-relevant. THIS IS THE NOVELTY — start collecting now.
+     reports), tagged India-relevant. This is the generalization test, and the
+     gap between general-smishing training and India evaluation IS the novelty —
+     start collecting now.
 
 4. **Demo visualization: deferred.** Build the model first; decide viz later.
    (Likely: highlight suspicious tokens + risk dial + "why" panel. Not a URL graph.)
@@ -58,6 +63,11 @@ Each row: `message_id, text, label (ham/spam/smishing), has_url, has_phone,
 has_email, source (mendeley/author-collected/...), india_relevant (bool)`.
 The `source` + `india_relevant` columns make the India evaluation subset a
 simple filter in Phase 5, not a retrofitted pipeline.
+
+> **Normalization note (Phase 1):** labels in `data/raw/Dataset_5971.csv` are
+> mixed-case (`ham`, `spam`, `Smishing`) and must be lowercased to exactly 3
+> classes; the `yes`/`No` values in the URL/EMAIL/PHONE columns must be
+> converted to booleans.
 
 ## License note (verify before publishing)
 
