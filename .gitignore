@@ -1,0 +1,22 @@
+# env & secrets
+venv/
+.venv/
+.env
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+# data & models (keep raw/processed out of git)
+data/raw/
+data/processed/
+models/*.pkl
+models/*.joblib
+*.db
+# notebooks
+.ipynb_checkpoints/
+# frontend
+frontend/node_modules/
+frontend/dist/
+# os
+.DS_Store

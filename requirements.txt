@@ -1,0 +1,20 @@
+# Pinned for reproducibility. Built on Python 3.12.13.
+# core ML
+scikit-learn==1.9.0
+xgboost==3.3.0
+pandas==3.0.3
+numpy==2.4.6
+# interpretability
+shap==0.52.0
+# feature enrichment
+tldextract==5.3.1
+python-whois==0.9.6
+python-Levenshtein==0.27.3
+requests==2.34.2
+# backend
+fastapi==0.138.0
+uvicorn[standard]==0.49.0
+# utils / testing
+python-dotenv==1.2.2
+pytest==9.1.1
+black==26.5.1

@@ -1,0 +1,14 @@
+url,label
+http://example-secure-login.com/verify,phishing
+https://www.google.com,benign
+https://github.com,benign
+http://192.168.1.1/account/update,phishing
+https://www.wikipedia.org,benign
+# --- India-relevant rows: REPLACE these with real examples you have seen ---
+# (UPI / bank-impersonation / fake-KYC / lottery scams). Your curation here
+# is the project's novelty — aim to grow this to a few hundred labeled rows.
+http://sbi-kyc-update-verify.xyz/login,phishing
+http://hdfc-secure-netbanking.online/account,phishing
+http://paytm-cashback-offer.tk/claim,phishing
+https://www.onlinesbi.sbi,benign
+https://www.hdfcbank.com,benign

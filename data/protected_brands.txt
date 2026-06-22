@@ -1,0 +1,23 @@
+sbi
+onlinesbi
+hdfcbank
+icicibank
+axisbank
+kotak
+pnb
+bankofbaroda
+paytm
+phonepe
+googlepay
+bhim
+upi
+amazon
+flipkart
+myntra
+irctc
+incometax
+epfindia
+aadhaar
+# Add more India-relevant brands/handles you see impersonated.
+# One brand token per line (no spaces). This list powers the
+# Levenshtein brand-distance feature.
