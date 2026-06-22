@@ -1,0 +1,35 @@
+notes,n,caught,recall
+aadhaar phishing,4,0,0.0
+aadhaar scam,1,0,0.0
+account takeover,2,0,0.0
+bank phishing,6,0,0.0
+bank scam,3,0,0.0
+card phishing,2,0,0.0
+card scam,1,0,0.0
+customs phishing,1,0,0.0
+customs scam,2,0,0.0
+delivery phishing,2,0,0.0
+epfo phishing,1,0,0.0
+fastag phishing,3,0,0.0
+fastag scam,1,0,0.0
+government impersonation,1,0,0.0
+government phishing,2,0,0.0
+high urgency phishing,1,0,0.0
+identity phishing,2,0,0.0
+identity theft,1,0,0.0
+kyc scam,1,0,0.0
+pan phishing,1,0,0.0
+refund phishing,1,0,0.0
+parcel scam,1,0,0.0
+reward scam,2,0,0.0
+sim phishing,1,0,0.0
+upi scam,3,0,0.0
+takeover,1,0,0.0
+tax phishing,3,0,0.0
+tax scam,1,0,0.0
+travel phishing,3,0,0.0
+wallet phishing,3,0,0.0
+wallet scam,1,0,0.0
+upi phishing,5,1,0.2
+sim scam,1,1,1.0
+kyc phishing,1,1,1.0

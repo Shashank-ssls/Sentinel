@@ -1,0 +1,75 @@
+{
+  "cleaning": {
+    "start_rows": 2267,
+    "removed_null_or_empty": 1,
+    "removed_image_omitted": 27,
+    "removed_duplicate_text": 178,
+    "final_rows": 2061,
+    "class_balance": {
+      "ham": 1325,
+      "spam": 736
+    }
+  },
+  "results": {
+    "claim": "real-world binary generalization (unwanted vs legit)",
+    "n": 2061,
+    "binary_macro_f1": 0.7919341631488621,
+    "per_class_report": {
+      "legit": {
+        "precision": 0.8017348203221809,
+        "recall": 0.9766037735849057,
+        "f1-score": 0.8805716230010208,
+        "support": 1325.0
+      },
+      "unwanted": {
+        "precision": 0.930648769574944,
+        "recall": 0.5652173913043478,
+        "f1-score": 0.7032967032967034,
+        "support": 736.0
+      },
+      "accuracy": 0.8296943231441049,
+      "macro avg": {
+        "precision": 0.8661917949485625,
+        "recall": 0.7709105824446267,
+        "f1-score": 0.7919341631488621,
+        "support": 2061.0
+      },
+      "weighted avg": {
+        "precision": 0.8477710486822166,
+        "recall": 0.8296943231441049,
+        "f1-score": 0.8172652955374704,
+        "support": 2061.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        1294,
+        31
+      ],
+      [
+        320,
+        416
+      ]
+    ],
+    "labels": [
+      "legit",
+      "unwanted"
+    ]
+  },
+  "error_analysis": {
+    "n_unwanted": 736,
+    "n_missed_unwanted": 320,
+    "n_legit": 1325,
+    "n_false_alarm": 31,
+    "missed_by_category": {
+      "airtel": 109,
+      "vi/vodafone": 20,
+      "jio": 8,
+      "govt/cert-in": 1,
+      "bank/kyc": 36,
+      "ecommerce": 27,
+      "recharge/offer": 137,
+      "uncategorized": 85
+    }
+  }
+}

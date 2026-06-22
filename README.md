@@ -100,6 +100,21 @@ paper/        outline.md + figures/  (IEEE write-up)
   the feature-set ablation (Stage-1 vs Stage-1+URL) — an honest negative result
   showing message-level features already capture the signal. Network host
   features (WHOIS/cert/ASN) remain future work.
+- **Phase 5 — India evaluation (hybrid, evaluation-only).** *Demoable:* `python
+  -m src.eval_india` loads the production model (no retraining; training split
+  untouched) and meets two India sets once. *Dataset A (real Indian SMS,
+  binary):* cleaned 2267 → 2061 (−1 null, −27 "image omitted", −178 dup);
+  real-world **unwanted-vs-legit** binary macro-F1 **0.792** vs Mendeley's
+  comparable 0.982 (**gap −0.19**) — high precision (0.93) but low recall (0.57)
+  on unwanted; misses mostly Airtel/recharge promos. *Dataset B (synthetic
+  India 3-class probe):* 3-class macro-F1 **0.204** vs Mendeley 0.891 (**gap
+  −0.69**) — the Western-trained model collapses to predicting `ham`, catching
+  almost no UPI/KYC/FASTag/Aadhaar smishing. Honest framing: A is a real-world
+  binary claim, B a controlled pattern probe (not a real-world claim). Artifacts
+  + error analysis + misclassification examples saved to `paper/figures/`.
+  *Paper contribution:* the novelty section — a quantified India generalization
+  gap with error analysis, showing a model trained on Western smishing fails to
+  transfer to India-specific scam patterns.
 
 ## Scope
 Classical ML only (scikit-learn, XGBoost). Neural-network approaches are

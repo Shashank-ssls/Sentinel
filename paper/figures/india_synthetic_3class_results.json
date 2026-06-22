@@ -1,0 +1,60 @@
+{
+  "claim": "controlled synthetic India-pattern 3-class probe",
+  "n": 200,
+  "macro_f1": 0.2037561235965765,
+  "per_class_report": {
+    "ham": {
+      "precision": 0.3385416666666667,
+      "recall": 0.9420289855072463,
+      "f1-score": 0.49808429118773945,
+      "support": 69.0
+    },
+    "spam": {
+      "precision": 1.0,
+      "recall": 0.015151515151515152,
+      "f1-score": 0.029850746268656716,
+      "support": 66.0
+    },
+    "smishing": {
+      "precision": 0.42857142857142855,
+      "recall": 0.046153846153846156,
+      "f1-score": 0.08333333333333333,
+      "support": 65.0
+    },
+    "accuracy": 0.345,
+    "macro avg": {
+      "precision": 0.5890376984126985,
+      "recall": 0.3344447822708692,
+      "f1-score": 0.2037561235965765,
+      "support": 200.0
+    },
+    "weighted avg": {
+      "precision": 0.5860825892857143,
+      "recall": 0.345,
+      "f1-score": 0.20877316006176014,
+      "support": 200.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      65,
+      0,
+      4
+    ],
+    [
+      65,
+      1,
+      0
+    ],
+    [
+      62,
+      0,
+      3
+    ]
+  ],
+  "labels": [
+    "ham",
+    "spam",
+    "smishing"
+  ]
+}

@@ -1,0 +1,3 @@
+evaluation,metric,value
+Mendeley held-out (3-class),macro_f1_3class,0.8906942613251349
+Mendeley held-out (binary unwanted/legit),macro_f1_binary,0.9817155689507431

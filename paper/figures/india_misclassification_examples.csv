@@ -1,0 +1,13 @@
+dataset,true,pred,note,text
+real,spam(unwanted),ham(legit)/ham,missed unwanted,CONGRATULATIONS! FREE 2GB data is yours! Claim on Airtel Thanks App Now. Hurry i.airtel.in/e/csl_ml_2GB
+real,spam(unwanted),ham(legit)/ham,missed unwanted,Don't let security concerns ruin your travel plans! Get Airtel Xsafe- Wi-Fi enabled surveillance solution that sends real time alerts. Order now and get FREE in
+real,spam(unwanted),ham(legit)/ham,missed unwanted,You're just 1 step away from FREE router! Get Airtel Xstream Fiber & enjoy up to 1 Gbps speeds on all your devices! Plans starting at just Rs 499! i.airtel.in/E
+real,spam(unwanted),ham(legit)/ham,missed unwanted,THE BIG BULL starring Abhishek Bachchan dekhiye Disney+ Hotstar VIP par. Vi ke naye 401 recharge pe paiye 1yr Disney+ Hotstar VIP & 100GB data (3GB/day +16GB) +
+real,ham(legit),unwanted/spam,false alarm,+918979018080.vcf (file attached)
+real,ham(legit),unwanted/spam,false alarm,+916232014309.vcf (file attached)
+synthetic,spam,ham,fake job promotion,"Congratulations! You have been shortlisted for a work-from-home job earning ?75,000/month. Register now at careers-fasttrack.in"
+synthetic,smishing,ham,upi phishing,"ICICI Alert: A UPI collect request of ?18,450 is pending. If not initiated by you, verify immediately at icici-secure-review.in"
+synthetic,spam,ham,loan marketing,Exclusive offer! Get personal loan up to ?20 lakh with approval in 5 mins. Apply today.
+synthetic,smishing,ham,fastag scam,FASTag Notice: Your wallet has been temporarily suspended. Update KYC details at fastag-update-verification.in
+synthetic,spam,ham,education marketing,Limited seats available! Join our AI & Data Science Master Program and get 60% scholarship.
+synthetic,smishing,ham,aadhaar phishing,"Dear User, your Aadhaar has been flagged for verification mismatch. Resolve now: uidai-update-now.in"
