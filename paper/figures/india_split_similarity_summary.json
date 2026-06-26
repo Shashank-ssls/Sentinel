@@ -1,0 +1,100 @@
+{
+  "seed": 42,
+  "neardup_threshold": 0.9,
+  "n_train": 1442,
+  "n_test": 619,
+  "distributions": {
+    "char_tfidf_cosine": {
+      "measure": "char_tfidf_cosine_3_5",
+      "min": 0.0,
+      "median": 0.4247533930404078,
+      "mean": 0.4876313342749371,
+      "p90": 0.8804653620400947,
+      "p95": 0.9436180755392419,
+      "p99": 0.999416006492116,
+      "n_ge_0.80": 96,
+      "n_ge_0.90": 51,
+      "n_ge_0.95": 29
+    },
+    "jaccard": {
+      "measure": "token_jaccard",
+      "min": 0.0,
+      "median": 0.2972972972972973,
+      "mean": 0.3902093814234302,
+      "p90": 0.8442307692307693,
+      "p95": 0.9333333333333333,
+      "p99": 1.0,
+      "n_ge_0.80": 76,
+      "n_ge_0.90": 54,
+      "n_ge_0.95": 24
+    }
+  },
+  "model_A_macro_f1": {
+    "overall": 0.9911943028989094,
+    "near_duplicate": {
+      "n": 51,
+      "macro_f1": 1.0,
+      "support": {
+        "unwanted": 32,
+        "legit": 19
+      }
+    },
+    "novel": {
+      "n": 568,
+      "macro_f1": 0.9900748926236183,
+      "support": {
+        "legit": 379,
+        "unwanted": 189
+      }
+    }
+  },
+  "diversity": {
+    "n_total": 2061,
+    "n_unique_collapse_0.9": 1941,
+    "pct_unique": 94.2,
+    "n_unwanted": 736,
+    "sender_hits_among_unwanted": {
+      "airtel": 193,
+      "vi/vodafone": 34,
+      "jio": 30,
+      "bank/finance": 115,
+      "ecommerce": 84
+    },
+    "unwanted_composition_pct": {
+      "promotional": 63.5,
+      "other": 22.4,
+      "mixed": 8.0,
+      "scam-like": 6.1
+    }
+  },
+  "example_pairs": [
+    {
+      "char_cosine": 1.0,
+      "jaccard": 1.0,
+      "test_label": "ham",
+      "test_text": "Happy diwali to all",
+      "nearest_train_text": "Happy Diwali to all"
+    },
+    {
+      "char_cosine": 1.0,
+      "jaccard": 1.0,
+      "test_label": "ham",
+      "test_text": "Hi kk",
+      "nearest_train_text": "Hi Kk"
+    },
+    {
+      "char_cosine": 1.0,
+      "jaccard": 1.0,
+      "test_label": "ham",
+      "test_text": "Happy new year to all",
+      "nearest_train_text": "Happy New Year to all"
+    },
+    {
+      "char_cosine": 1.0,
+      "jaccard": 1.0,
+      "test_label": "ham",
+      "test_text": "Hi team",
+      "nearest_train_text": "Hi Team"
+    }
+  ]
+}
