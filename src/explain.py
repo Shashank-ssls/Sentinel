@@ -71,7 +71,13 @@ def get_coefficients(pipe: Pipeline) -> tuple[list[str], np.ndarray, np.ndarray]
     if not hasattr(clf, "coef_"):
         raise TypeError("Interpretability layer requires a linear model (coef_).")
     feature_names = list(pipe.named_steps["features"].get_feature_names_out())
-    return list(clf.classes_), feature_names, np.asarray(clf.coef_)
+    classes = list(clf.classes_)
+    coef = np.asarray(clf.coef_)
+    # Binary LogReg stores a single coef row for the positive class
+    # (classes_[1]); expand to per-class rows so callers can index by class.
+    if coef.shape[0] == 1 and len(classes) == 2:
+        coef = np.vstack([-coef[0], coef[0]])
+    return classes, feature_names, coef
 
 
 def _clean(name: str) -> tuple[str, str]:

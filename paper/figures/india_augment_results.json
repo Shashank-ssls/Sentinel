@@ -1,0 +1,186 @@
+{
+  "seed": 42,
+  "sizes": {
+    "mendeley_train": 4759,
+    "india_train": 1442,
+    "india_test": 619,
+    "mendeley_test": 1190
+  },
+  "cv": {
+    "W": {
+      "mean": 0.9771516364878741,
+      "std": 0.009820092923173665
+    },
+    "A": {
+      "mean": 0.9806769000243764,
+      "std": 0.005664420317224902
+    }
+  },
+  "results": {
+    "W_on_Mendeley": {
+      "macro_f1": 0.9874310379427742,
+      "per_class_report": {
+        "legit": {
+          "precision": 0.9917864476386037,
+          "recall": 0.9989658738366081,
+          "f1-score": 0.9953632148377125,
+          "support": 967.0
+        },
+        "unwanted": {
+          "precision": 0.9953703703703703,
+          "recall": 0.9641255605381166,
+          "f1-score": 0.979498861047836,
+          "support": 223.0
+        },
+        "accuracy": 0.992436974789916,
+        "macro avg": {
+          "precision": 0.993578409004487,
+          "recall": 0.9815457171873623,
+          "f1-score": 0.9874310379427742,
+          "support": 1190.0
+        },
+        "weighted avg": {
+          "precision": 0.992458056688338,
+          "recall": 0.992436974789916,
+          "f1-score": 0.9923903149258281,
+          "support": 1190.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          966,
+          1
+        ],
+        [
+          8,
+          215
+        ]
+      ]
+    },
+    "W_on_India": {
+      "macro_f1": 0.7681157059791195,
+      "per_class_report": {
+        "legit": {
+          "precision": 0.7847082494969819,
+          "recall": 0.9798994974874372,
+          "f1-score": 0.8715083798882681,
+          "support": 398.0
+        },
+        "unwanted": {
+          "precision": 0.9344262295081968,
+          "recall": 0.5158371040723982,
+          "f1-score": 0.6647230320699709,
+          "support": 221.0
+        },
+        "accuracy": 0.81421647819063,
+        "macro avg": {
+          "precision": 0.8595672395025893,
+          "recall": 0.7478683007799177,
+          "f1-score": 0.7681157059791195,
+          "support": 619.0
+        },
+        "weighted avg": {
+          "precision": 0.8381616801633446,
+          "recall": 0.81421647819063,
+          "f1-score": 0.7976803316365012,
+          "support": 619.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          390,
+          8
+        ],
+        [
+          107,
+          114
+        ]
+      ]
+    },
+    "A_on_Mendeley": {
+      "macro_f1": 0.9860098095923329,
+      "per_class_report": {
+        "legit": {
+          "precision": 0.9907692307692307,
+          "recall": 0.9989658738366081,
+          "f1-score": 0.9948506694129763,
+          "support": 967.0
+        },
+        "unwanted": {
+          "precision": 0.9953488372093023,
+          "recall": 0.9596412556053812,
+          "f1-score": 0.9771689497716894,
+          "support": 223.0
+        },
+        "accuracy": 0.9915966386554622,
+        "macro avg": {
+          "precision": 0.9930590339892665,
+          "recall": 0.9793035647209947,
+          "f1-score": 0.9860098095923329,
+          "support": 1190.0
+        },
+        "weighted avg": {
+          "precision": 0.9916274259256476,
+          "recall": 0.9915966386554622,
+          "f1-score": 0.9915372043037267,
+          "support": 1190.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          966,
+          1
+        ],
+        [
+          9,
+          214
+        ]
+      ]
+    },
+    "A_on_India": {
+      "macro_f1": 0.9911943028989094,
+      "per_class_report": {
+        "legit": {
+          "precision": 0.9924812030075187,
+          "recall": 0.9949748743718593,
+          "f1-score": 0.9937264742785445,
+          "support": 398.0
+        },
+        "unwanted": {
+          "precision": 0.990909090909091,
+          "recall": 0.9864253393665159,
+          "f1-score": 0.9886621315192744,
+          "support": 221.0
+        },
+        "accuracy": 0.9919224555735057,
+        "macro avg": {
+          "precision": 0.9916951469583049,
+          "recall": 0.9907001068691876,
+          "f1-score": 0.9911943028989094,
+          "support": 619.0
+        },
+        "weighted avg": {
+          "precision": 0.991919915812442,
+          "recall": 0.9919224555735057,
+          "f1-score": 0.9919183648281427,
+          "support": 619.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          396,
+          2
+        ],
+        [
+          3,
+          218
+        ]
+      ]
+    }
+  },
+  "headline": {
+    "india_gain": 0.22307859691978993,
+    "western_delta": -0.0014212283504413392,
+    "n_newly_caught": 104
+  }
+}

@@ -115,6 +115,21 @@ paper/        outline.md + figures/  (IEEE write-up)
   *Paper contribution:* the novelty section — a quantified India generalization
   gap with error analysis, showing a model trained on Western smishing fails to
   transfer to India-specific scam patterns.
+- **Phase 5b — India-augmented model (the fix).** *Demoable:* `python -m
+  src.india_augment` shows the Phase 5 gap can be closed. Binary only
+  (unwanted vs legit). The cleaned real India set (2061) is split stratified
+  70/30 into a **sacred** held-out test (`data/processed/india_{train,test}.csv`,
+  fixed seed, never trained/TF-IDF-fit on). Two models, same LogReg/pipeline:
+  **W (Western-only)** = Mendeley train; **A (India-augmented)** = Mendeley +
+  70% India train. **Headline:** on the held-out India test, macro-F1 **W=0.768
+  → A=0.991 (+0.223)**; on Mendeley held-out, **W=0.987 → A=0.986 (−0.001, no
+  regression)** — adding India data fixes India performance for free. 104 India
+  messages W missed are now caught by A, with `explain()` showing learned India
+  terms (`airtel`, `rs`, `airtel in`, `click bit`). Model A saved as
+  `models/india_augmented_model.pkl`; Model W and all Phase 5 results untouched.
+  *Paper contribution:* the fix completing the novelty arc — a small India
+  training sample closes the generalization gap with no cost to Western
+  performance.
 
 ## Scope
 Classical ML only (scikit-learn, XGBoost). Neural-network approaches are
