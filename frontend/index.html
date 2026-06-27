@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentinel — SMS unwanted vs legitimate</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead__inner">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">▚</span>
+        <span class="brand__name">SENTINEL</span>
+        <span class="brand__tag">SMS THREAT LAB</span>
+      </div>
+      <!-- The proven aggregate finding, connecting this live demo to the paper. -->
+      <dl class="finding" id="finding" aria-label="Held-out results">
+        <div class="finding__cell">
+          <dt>India held-out macro-F1</dt>
+          <dd><span id="f-india">·</span></dd>
+        </div>
+        <div class="finding__cell">
+          <dt>Western change</dt>
+          <dd><span id="f-west">·</span></dd>
+        </div>
+        <div class="finding__cell">
+          <dt>Novel-bucket F1 (near-dup verified)</dt>
+          <dd><span id="f-novel">·</span></dd>
+        </div>
+      </dl>
+    </div>
+  </header>
+
+  <main class="stage">
+    <!-- Two-column workspace: input (left, pinned) beside results (right) -->
+    <div class="workspace">
+      <section class="composer" aria-label="Message to analyze">
+        <label class="composer__label" for="msg">Paste an SMS message</label>
+        <textarea id="msg" class="composer__input" rows="3"
+          placeholder="e.g. A UPI collect request of Rs 18,450 is pending. Verify at icici-secure-review.in"></textarea>
+        <div class="composer__row">
+          <button id="analyze" class="btn" type="button">Analyze</button>
+          <span class="composer__hint">Ctrl/Cmd + Enter</span>
+        </div>
+
+        <div class="examples">
+          <p class="examples__group" id="grp-scam">Scam &mdash; phishing</p>
+          <div class="examples__chips" aria-labelledby="grp-scam" id="chips-scam"></div>
+          <p class="examples__group" id="grp-promo">
+            Promotional spam &mdash; real India messages W misses
+          </p>
+          <div class="examples__chips" aria-labelledby="grp-promo" id="chips-promo"></div>
+          <p class="examples__group" id="grp-legit">Legitimate</p>
+          <div class="examples__chips" aria-labelledby="grp-legit" id="chips-legit"></div>
+        </div>
+      </section>
+
+      <div class="resultcol">
+        <p class="placeholder" id="placeholder">
+          Analyze a message to see both models' verdicts.
+        </p>
+
+        <section class="results" id="results" aria-live="polite" hidden>
+          <!-- HERO: the W-vs-A verdict comparison -->
+          <div class="banner" id="banner" role="status"></div>
+          <div class="echo" id="echo"></div>
+          <div class="lanes">
+            <article class="lane" id="lane-W">
+              <header class="lane__head">
+                <span class="lane__tag">MODEL&nbsp;W</span>
+                <span class="lane__blurb">Western-only</span>
+              </header>
+              <div class="verdict" id="verdict-W"></div>
+              <details class="tech">
+                <summary>Technical detail</summary>
+                <div class="tech__body" id="tech-W"></div>
+              </details>
+            </article>
+
+            <article class="lane" id="lane-A">
+              <header class="lane__head">
+                <span class="lane__tag">MODEL&nbsp;A</span>
+                <span class="lane__blurb">India-augmented</span>
+              </header>
+              <div class="verdict" id="verdict-A"></div>
+              <details class="tech">
+                <summary>Technical detail</summary>
+                <div class="tech__body" id="tech-A"></div>
+              </details>
+            </article>
+          </div>
+
+          <!-- The explanation of why A wins, shown only on disagreement -->
+          <aside class="callout" id="callout" hidden>
+            <p class="callout__title">India vocabulary Model A learned &mdash; that Model W lacks</p>
+            <div class="callout__chips" id="callout-chips"></div>
+          </aside>
+        </section>
+      </div>
+    </div>
+
+    <!-- Layered depth for inspection: methodology + full comparison -->
+    <section class="methods">
+      <details class="panel">
+        <summary>About this system &mdash; methodology</summary>
+        <div class="panel__body">
+          <dl class="spec">
+            <dt>Model</dt>
+            <dd>Multinomial / binary logistic regression (scikit-learn). No neural nets.</dd>
+            <dt>Features</dt>
+            <dd>TF-IDF over word 1&ndash;2 grams + 10 structural features (length,
+              digit count, uppercase ratio, link/currency/urgency counts,
+              has-URL/phone/email). One shared pipeline for training and inference.</dd>
+            <dt>Model W</dt>
+            <dd>Trained on the Mendeley SMS corpus (largely Western-origin smishing).</dd>
+            <dt>Model A</dt>
+            <dd>Trained on Mendeley + a 70% split of a real Indian SMS set; the
+              30% India test is held out (never trained or TF-IDF-fit on).</dd>
+            <dt>Explanations</dt>
+            <dd>The model's own signed coefficients (logit = coefficient × feature
+              value) &mdash; faithful, not a surrogate.</dd>
+            <dt>Scope</dt>
+            <dd>Binary <em>unwanted vs legitimate</em>. Not smishing-specific:
+              "unwanted" spans scam and promotional spam.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="panel">
+        <summary>Full model comparison &mdash; held-out macro-F1</summary>
+        <div class="panel__body" id="comparison"></div>
+      </details>
+    </section>
+
+    <footer class="pagefoot">
+      <p class="pagefoot__item">
+        One message, two detectors. A model trained only on Western SMS
+        (<strong>W</strong>) versus the same model retrained with Indian SMS
+        (<strong>A</strong>) &mdash; classifying <em>unwanted vs legitimate</em>.
+      </p>
+      <p class="pagefoot__item">
+        Fully local; no network calls. Verdicts are <em>unwanted vs legitimate</em>,
+        not smishing-specific. Aggregate metrics are read from the evaluation
+        artifacts; per-message explanations are each model's own coefficients.
+      </p>
+    </footer>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
